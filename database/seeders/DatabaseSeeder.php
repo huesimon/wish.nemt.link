@@ -19,15 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-    // ]);
-
-        // use Wishlist::factory and create many images via morph relation
-
         $wishlists = Wishlist::factory()->count(10)->create();
 
         foreach ($wishlists as $wishlist) {
@@ -39,6 +30,13 @@ class DatabaseSeeder extends Seeder
             $wishlist->wishes()->saveMany(
                 Wish::factory()->count(5)->create()
             );
+
+            foreach ($wishlist->wishes as $wish) {
+                Image::factory()->count(3)->create([
+                    'imageable_id' => $wish->id,
+                    'imageable_type' => Wish::class,
+                ]);
+            }
         }
 
 

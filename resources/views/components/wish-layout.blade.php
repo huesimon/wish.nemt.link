@@ -44,7 +44,6 @@
                     <div x-data="">
                         <button
                             type="button"
-                            x-on:click=
                             class="-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900">
                             <span class="sr-only">Open sidebar</span>
                             <!-- Heroicon name: outline/bars-3 -->

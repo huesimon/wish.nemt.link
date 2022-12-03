@@ -47,7 +47,9 @@ class WishlistController extends Controller
      */
     public function show(Wishlist $wishlist)
     {
-        //
+        return view('wishlist.show', [
+            'wishlist' => $wishlist,
+        ]);
     }
 
     /**

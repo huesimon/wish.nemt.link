@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Image;
+use App\Models\Wishlist;
+use Database\Factories\ImageFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +24,16 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // use Wishlist::factory and create many images via morph relation
+
+        $wishlists = Wishlist::factory()->count(10)->create();
+
+        foreach ($wishlists as $wishlist) {
+            Image::factory()->count(3)->create([
+                'imageable_id' => $wishlist->id,
+                'imageable_type' => Wishlist::class,
+            ]);
+        }
     }
 }

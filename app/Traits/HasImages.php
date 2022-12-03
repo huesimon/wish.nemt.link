@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Traits;
-
-use Illuminate\Database\Eloquent\Model;
-
-class HasImages extends Model
+trait HasImages
 {
     public function images()
     {

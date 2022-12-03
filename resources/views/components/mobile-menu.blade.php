@@ -1,5 +1,7 @@
 <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-<div class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
+<div
+    x-data="{ open: false }"
+    class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
     <!--
       Off-canvas menu backdrop, show/hide based on off-canvas menu state.
 
@@ -10,9 +12,13 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-    <div class="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
+    <div
+        x-show="open"
+        class="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
 
-    <div class="fixed inset-0 z-40 flex">
+    <div
+        x-show="open"
+        class="fixed inset-0 z-40 flex">
       <!--
         Off-canvas menu, show/hide based on off-canvas menu state.
 

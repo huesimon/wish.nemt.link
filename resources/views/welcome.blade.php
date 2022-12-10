@@ -1,3 +1,3 @@
 <x-wish-layout>
-    awdoawdok
+    <x-wishlist-options-grid />
 </x-wish-layout>

@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::resources([
     'wishlist' => App\Http\Controllers\WishlistController::class,
+    'wish' => App\Http\Controllers\WishController::class,
 ]);
 
 Route::middleware([

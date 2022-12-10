@@ -13,7 +13,6 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- Styles -->
     @livewireStyles
@@ -41,8 +40,9 @@
                         <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                             alt="Your Company">
                     </div>
-                    <div x-data="">
+                    <div x-data>
                         <button
+                            @click="$dispatch('toggle-mobile-menu')"
                             type="button"
                             class="-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900">
                             <span class="sr-only">Open sidebar</span>

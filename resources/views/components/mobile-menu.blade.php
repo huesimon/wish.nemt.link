@@ -1,47 +1,60 @@
 <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
 <div
-    x-data="{ open: false }"
-    class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
-    <!--
-      Off-canvas menu backdrop, show/hide based on off-canvas menu state.
+    x-data="{
+        open: false,
+        toggle() {
+            console.log('toggle', this.open)
+            if (this.open) {
+                return this.close()
+            }
+            this.open = true
+        },
+        close(focusAfter) {
+            if (! this.open) return
 
-      Entering: "transition-opacity ease-linear duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "transition-opacity ease-linear duration-300"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
+            this.open = false
+
+            focusAfter && focusAfter.focus()
+        }
+    }"
+    @toggle-mobile-menu.window="toggle()"
+    x-id="['mobile-nav-button']"
+    class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
     <div
+        style="display: none;"
         x-show="open"
+        x-transition:enter="transition-opacity ease-linear duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition-opacity ease-linear duration-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
         class="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
 
     <div
+        style="display: none;"
         x-show="open"
+        x-transition:enter="transition ease-in-out duration-300 transform"
+        x-transition:enter-start="-translate-x-full"
+        x-transition:enter-end="translate-x-0"
+        x-transition:leave="transition ease-in-out duration-300 transform"
+        x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="-translate-x-full"
         class="fixed inset-0 z-40 flex">
-      <!--
-        Off-canvas menu, show/hide based on off-canvas menu state.
-
-        Entering: "transition ease-in-out duration-300 transform"
-          From: "-translate-x-full"
-          To: "translate-x-0"
-        Leaving: "transition ease-in-out duration-300 transform"
-          From: "translate-x-0"
-          To: "-translate-x-full"
-      -->
-      <div class="relative flex w-full max-w-xs flex-1 flex-col bg-white focus:outline-none">
-        <!--
-          Close button, show/hide based on off-canvas menu state.
-
-          Entering: "ease-in-out duration-300"
-            From: "opacity-0"
-            To: "opacity-100"
-          Leaving: "ease-in-out duration-300"
-            From: "opacity-100"
-            To: "opacity-0"
-        -->
-        <div class="absolute top-0 right-0 -mr-12 pt-2">
-          <button type="button" class="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+        <div class="relative flex w-full max-w-xs flex-1 flex-col bg-white focus:outline-none">
+        <div
+            x-data
+            x-show="open"
+            x-transition:enter="transition ease-in-out duration-300 transform"
+            x-transition:enter-start="-translate-x-full"
+            x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in-out duration-300 transform"
+            x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full"
+            class="absolute top-0 right-0 -mr-12 pt-2">
+          <button
+                @click="toggle()"
+                type="button" class="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
             <span class="sr-only">Close sidebar</span>
             <!-- Heroicon name: outline/x-mark -->
             <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">

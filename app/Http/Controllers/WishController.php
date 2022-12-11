@@ -58,7 +58,9 @@ class WishController extends Controller
      */
     public function edit(Wish $wish)
     {
-        //
+        return view('wish.edit', [
+            'wish' => $wish,
+        ]);
     }
 
     /**

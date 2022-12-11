@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resources([
+    'wishlist' => App\Http\Controllers\WishlistController::class,
+    'wish' => App\Http\Controllers\WishController::class,
+]);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class WishFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'wishlist_id' => Wishlist::factory(),
+            'title' => $this->faker->name,
+            'description' => $this->faker->text,
+            'amount' => $this->faker->numberBetween(1, 100),
+            'url' => $this->faker->url,
         ];
     }
 }

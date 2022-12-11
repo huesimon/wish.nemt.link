@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('wishes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('wishlist_id');
+            $table->foreignId('wishlist_id')->constrained();
             $table->string('title');
             $table->string('description');
             $table->string('url');
